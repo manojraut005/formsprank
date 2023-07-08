@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login Form</h1>
+    <form id="loginForm" novalidate>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <input type="submit" onclick="handleclick()" value="Submit" id="submitButton">
+    </form>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const submitButton = document.getElementById('submitButton');
+        const audio = new Audio("./Angry Bird Sounds.mp3");
+
+        submitButton.addEventListener('click',function (event){
+           
+            submitButton.value="arr chutiya form fill kr ";
+            audio.play();
+        })
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username.trim() === '' || password.trim() === '') {
+                const screenWidth = window.innerWidth;
+                const screenHeight = window.innerHeight;
+                const randomLeft = Math.floor(Math.random() * (screenWidth - 100));
+                const randomTop = Math.floor(Math.random() * (screenHeight - 50));
+                
+                submitButton.style.position = 'absolute';
+                submitButton.style.left = randomLeft + 'px';
+                submitButton.style.top = randomTop + 'px';
+            } else {
+                submitButton.style.position = 'static'; // Reset the position to default
+                // Perform login or further processing here
+                console.log('Username:', username);
+                console.log('Password:', password);
+            }
+
+        });
+    </script>
+</body>
+</html>
